@@ -1,0 +1,48 @@
+{
+  "name": "look4team-backend",
+  "version": "1.0.0",
+  "description": "Backend del proyecto del curso de FullStack",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc -p .",
+    "start": "node dist/server.js",
+    "dev": "nodemon src/server.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fullstacktf/Look4Team-Backend.git"
+  },
+  "author": "Grupo Look4Team",
+  "contributors": [
+    {
+      "name": "Héctor Alayon",
+      "email": "hector.alayon@gmail.com",
+      "url": "https://github.com/HAlayon"
+    },
+    {
+      "name": "Dimple Bharwani",
+      "email": "dimplejbhar@gmail.com",
+      "url": "https://github.com/dimplebharwani"
+    },
+    {
+      "name": "Ricardo Pineda",
+      "email": "richipineda2@gmail.com",
+      "url": "https://github.com/ririchi2"
+    },
+    {
+      "name": "Jesús Ramos",
+      "email": "jesusramosdev@gmail.com",
+      "url": "https://github.com/JeramDev"
+    }
+  ],
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^12.12.9",
+    "@typescript-eslint/eslint-plugin": "^2.8.0",
+    "@typescript-eslint/parser": "^2.8.0",
+    "eslint": "^6.6.0",
+    "nodemon": "^1.19.4",
+    "typescript": "^3.7.2"
+  }
+}
