@@ -1,4 +1,4 @@
-# Look4Players - Backend
+# Look4Team - Backend
 
 Web que permite a los usuarios encontrar gente de su zona y con sus mismos intereses deportivos con el objetivo
 de crear grupos y eventos y facilitar así la práctica del deporte que le guste.
