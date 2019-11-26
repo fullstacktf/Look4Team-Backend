@@ -7,5 +7,4 @@ de crear grupos y eventos y facilitar así la práctica del deporte que le guste
 
  - [Héctor Alayon](https://github.com/HAlayon)
  - [Dimple Bharwani](https://github.com/dimplebharwani)
- - [Ricardo Pineda](https://github.com/ririchi2/)
  - [Jesús Ramos](https://github.com/JeramDev)
