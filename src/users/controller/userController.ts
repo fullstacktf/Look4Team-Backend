@@ -1,24 +1,23 @@
 import { User, IUserModel } from '../model/userModel';
-import Helper from '../../Helper';
-import { ObjectId } from 'mongodb';
+import DBManager from '../../DBManager';
 
 export default class UserController {
-
-  static async getAllUsers () {
-    Helper.connectDatabase();
+  static async getAllUsers(): Promise<IUserModel[]> {
+    await DBManager.connectDatabase();
     const users = await User.find();
     return users;
   }
 
-  static async getUser (id:string) {
-    Helper.connectDatabase();
-    const users = await User.find(new ObjectId(id));
-    return users;
+  static async getUser(id: string): Promise<IUserModel> {
+    await DBManager.connectDatabase();
+    const user = await User.findById(id);
+    return user;
   }
 
-  static async addUser(body) {
+  static async addUser(body): Promise<IUserModel> {
+    await DBManager.connectDatabase();
     const { username, email, password } = body;
-    const user:IUserModel = new User({
+    const user: IUserModel = new User({
       username,
       email,
       password
@@ -27,14 +26,15 @@ export default class UserController {
     return user;
   }
 
-  static async deleteUser(id:string) {
-    const user = await User.findByIdAndDelete(new ObjectId(id));
+  static async deleteUser(id: string): Promise<IUserModel> {
+    await DBManager.connectDatabase();
+    const user = await User.findByIdAndDelete(id);
     return user;
   }
 
-  static async updateUser(id:string, body) {
-    const user = await User.findByIdAndUpdate(new ObjectId(id), body);
+  static async updateUser(id: string, body): Promise<IUserModel> {
+    await DBManager.connectDatabase();
+    const user = await User.findByIdAndUpdate(id, body);
     return user;
   }
-  
 }
