@@ -40,7 +40,6 @@ export default class UserController {
         const event = await Event.findByIdAndUpdate(id, body);
         return event;
     }
-       
     //searchEventBy()
 
 }
