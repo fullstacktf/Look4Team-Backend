@@ -5,25 +5,25 @@ const router: Router = Router();
 
 //getAllEvents()
 router.get('/', (req: Request, res: Response) => {
-    EventController.getAllEvents()
-        .then((events: IEventModel[]) => {
-            res.send(200).json(events);
-        })
-        .catch((err: Error) => {
-            throw new Error(`Error trying to get all events : ${err}`);
-        });
+  EventController.getAllEvents()
+    .then((events: IEventModel[]) => {
+      res.send(200).json(events);
+    })
+    .catch((err: Error) => {
+      throw new Error(`Error trying to get all events : ${err}`);
+    });
 });
 
 //getEvent()
 router.get('/:id', (req: Request, res: Response) => {
-    EventController.getEvent(req.params.id)
-      .then((user: IEventModel) => {
-        res.status(200).json(event);
-      })
-      .catch((err: Error) => {
-        throw new Error(`Error trying to get one event : ${err}`);
-      });
-  });
+  EventController.getEvent(req.params.id)
+    .then((event: IEventModel) => {
+      res.status(200).json(event);
+    })
+    .catch((err: Error) => {
+      throw new Error(`Error trying to get one event : ${err}`);
+    });
+});
 
 //addEvent()
 //duda con el controlador
@@ -36,7 +36,7 @@ router.get('/:id', (req: Request, res: Response) => {
 //         throw new Error(`Error trying to add event : ${err}`);
 //       });
 //   });
-  
+
 //updateEvent()
 router.put('/:id', (req: Request, res: Response) => {
   EventController.updateEvent(req.params.id, req.body)
@@ -60,6 +60,5 @@ router.delete('/:id', (req: Request, res: Response) => {
 });
 
 //searchEventsBy()
-
 
 export default router;

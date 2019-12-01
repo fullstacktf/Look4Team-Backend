@@ -1,5 +1,5 @@
 import { Group, IGroupModel } from '../model/groupsModel';
-import DBManager from '../../DBManager';
+import DBManager from '../../utils/DBManager';
 
 export default class GroupController {
   static async getAllGroups(): Promise<IGroupModel[]> {
@@ -14,7 +14,7 @@ export default class GroupController {
     return group;
   }
 
-  static async addGroup(body): Promise<IGroupModel> {
+  static async addGroup(body: IGroupModel): Promise<IGroupModel> {
     await DBManager.connectDatabase();
     const { name } = body;
     const group: IGroupModel = new Group({
@@ -30,7 +30,10 @@ export default class GroupController {
     return group;
   }
 
-  static async updateGroup(id: string, body): Promise<IGroupModel> {
+  static async updateGroup(
+    id: string,
+    body: IGroupModel
+  ): Promise<IGroupModel> {
     await DBManager.connectDatabase();
     const group = await Group.findByIdAndUpdate(id, body);
     return group;

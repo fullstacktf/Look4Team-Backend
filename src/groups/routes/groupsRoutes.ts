@@ -4,7 +4,7 @@ import { IGroupModel } from '../model/groupsModel';
 const router: Router = Router();
 
 router.get('/', (req: Request, res: Response) => {
-    GroupController.getAllGroups()
+  GroupController.getAllGroups()
     .then((groups: IGroupModel[]) => {
       res.status(200).json(groups);
     })
@@ -14,7 +14,7 @@ router.get('/', (req: Request, res: Response) => {
 });
 
 router.get('/:id', (req: Request, res: Response) => {
-    GroupController.getGroup(req.params.id)
+  GroupController.getGroup(req.params.id)
     .then((group: IGroupModel) => {
       res.status(200).json(group);
     })
@@ -24,7 +24,7 @@ router.get('/:id', (req: Request, res: Response) => {
 });
 
 router.post('/', (req: Request, res: Response) => {
-    GroupController.addGroup(req.body)
+  GroupController.addGroup(req.body)
     .then((group: IGroupModel) => {
       return res.status(200).json(group);
     })
@@ -34,7 +34,7 @@ router.post('/', (req: Request, res: Response) => {
 });
 
 router.put('/:id', (req: Request, res: Response) => {
-    GroupController.updateGroup(req.params.id, req.body)
+  GroupController.updateGroup(req.params.id, req.body)
     .then((group: IGroupModel) => {
       return res.status(200).json(group);
     })
@@ -44,7 +44,7 @@ router.put('/:id', (req: Request, res: Response) => {
 });
 
 router.delete('/:id', (req: Request, res: Response) => {
-    GroupController.deleteGroup(req.params.id)
+  GroupController.deleteGroup(req.params.id)
     .then((group: IGroupModel) => {
       return res.status(200).json(group);
     })

@@ -18,4 +18,7 @@ const GroupSchema: Schema = new Schema({
   created: { type: Date, default: Date.now() }
 });
 
-export const Group: Model<IGroupModel> = model<IGroupModel>('groups', GroupSchema);
+export const Group: Model<IGroupModel> = model<IGroupModel>(
+  'groups',
+  GroupSchema
+);

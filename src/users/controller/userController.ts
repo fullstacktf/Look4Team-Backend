@@ -1,5 +1,5 @@
 import { User, IUserModel } from '../model/userModel';
-import DBManager from '../../DBManager';
+import DBManager from '../../utils/DBManager';
 
 export default class UserController {
   static async getAllUsers(): Promise<IUserModel[]> {
@@ -14,7 +14,7 @@ export default class UserController {
     return user;
   }
 
-  static async addUser(body): Promise<IUserModel> {
+  static async addUser(body: IUserModel): Promise<IUserModel> {
     await DBManager.connectDatabase();
     const { username, email, password } = body;
     const user: IUserModel = new User({
@@ -32,7 +32,7 @@ export default class UserController {
     return user;
   }
 
-  static async updateUser(id: string, body): Promise<IUserModel> {
+  static async updateUser(id: string, body: IUserModel): Promise<IUserModel> {
     await DBManager.connectDatabase();
     const user = await User.findByIdAndUpdate(id, body);
     return user;
