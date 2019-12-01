@@ -7,7 +7,7 @@ const router: Router = Router();
 router.get('/', (req: Request, res: Response) => {
   EventController.getAllEvents()
     .then((events: IEventModel[]) => {
-      res.send(200).json(events);
+      res.status(200).json(events);
     })
     .catch((err: Error) => {
       throw new Error(`Error trying to get all events : ${err}`);
