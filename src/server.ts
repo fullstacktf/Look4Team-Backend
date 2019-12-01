@@ -7,8 +7,10 @@ const server = express();
 
 server.use(morgan('dev'));
 server.use(json());
+
+server.use('/events', GroupRoutes);
+server.use('/groups', GroupRoutes);
 server.use('/users', UserRoutes);
-server.use('/users', GroupRoutes);
 
 server.listen(3000, () => {
   console.log('listening in port 3000');
