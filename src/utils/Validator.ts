@@ -39,4 +39,27 @@ export default class Validator {
     }
     return true;
   }
+
+  static isLength(input: string, min: number, max?: number): boolean {
+    const inputLength: number = input.length;
+    if (max) {
+      if (inputLength < min || inputLength > max) {
+        return false;
+      }
+    } else {
+      if (inputLength < min) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  static hasProperties(input: Object, properties: string[]): boolean {
+    properties.forEach((property: string) => {
+      if (!Object.prototype.hasOwnProperty.call(input, property)) {
+        return false;
+      }
+    });
+    return true;
+  }
 }

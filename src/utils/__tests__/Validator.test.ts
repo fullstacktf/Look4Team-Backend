@@ -45,4 +45,29 @@ describe('Validator', () => {
       expect(Validator.isValidDate('1/9/2018')).toBe(false);
     });
   });
+
+  describe('Comprueba si la entrada cumple una longitud determinada', () => {
+    test('Devuelve true si la cadena cumple la longitud entre un mínimo y un máximo', () => {
+      expect(Validator.isLength('hola', 1, 4)).toBe(true);
+    });
+    test('Devuelve true si la cadena cumple la longitud mínima', () => {
+      expect(Validator.isLength('hola', 1)).toBe(true);
+    });
+    test('Devuelve false si la cadena no cumple la longitud entre un mínimo y un máximo', () => {
+      expect(Validator.isLength('hola', 7, 10)).toBe(false);
+    });
+    test('Devuelve false si la cadena no cumple la longitud mínima', () => {
+      expect(Validator.isLength('hola', 7)).toBe(false);
+    });
+  });
+
+  describe('Comprueba si un objeto contiene una serie de propiedades', () => {
+    const user = {
+      username: 'user',
+      password: '1234'
+    };
+    test('Devuelve false si no contiene una propiedad', () => {
+      expect(Validator.hasProperties(user, ['name'])).toBe(false);
+    });
+  });
 });
