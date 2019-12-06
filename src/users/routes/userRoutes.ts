@@ -13,8 +13,8 @@ router.get('/', (req: Request, res: Response) => {
     });
 });
 
-router.get('/:id', (req: Request, res: Response) => {
-  UserController.getUser(req.params.id)
+router.get('/:username', (req: Request, res: Response) => {
+  UserController.getUser(req.params.username)
     .then((user: IUserModel) => {
       res.status(200).json(user);
     })
@@ -33,8 +33,8 @@ router.post('/', (req: Request, res: Response) => {
     });
 });
 
-router.put('/:id', (req: Request, res: Response) => {
-  UserController.updateUser(req.params.id, req.body)
+router.put('/:username', (req: Request, res: Response) => {
+  UserController.updateUser(req.params.username, req.body)
     .then((user: IUserModel) => {
       return res.status(200).json(user);
     })
@@ -43,8 +43,8 @@ router.put('/:id', (req: Request, res: Response) => {
     });
 });
 
-router.delete('/:id', (req: Request, res: Response) => {
-  UserController.deleteUser(req.params.id)
+router.delete('/:username', (req: Request, res: Response) => {
+  UserController.deleteUser(req.params.username)
     .then((user: IUserModel) => {
       return res.status(200).json(user);
     })

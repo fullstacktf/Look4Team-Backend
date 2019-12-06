@@ -6,16 +6,16 @@ export interface IUserModel extends Document {
   password: string;
   name: string;
   surname: string;
-  nicknames: Array<string>;
+  nicknames: string[];
   birthDate: Date;
-  // favouritePlace:
-  gender: string;
+  // favouritePlace: String,  // MongoDB Localizaciones
   description: string;
   rating: Object;
   avatar: string;
-  friends: Array<string>;
-  groups: Array<number>;
-  events: Array<number>;
+  friends: Object[];
+  groups: string[];
+  events: string[];
+  sports: string[];
   updated: Date;
   created: Date;
 }
@@ -23,23 +23,27 @@ export interface IUserModel extends Document {
 const UserSchema: Schema = new Schema({
   username: { type: String, required: true },
   email: { type: String, required: true },
-  password: { type: String, require: true, select: false },
+  password: { type: String, required: true, select: false },
   name: String,
   surname: String,
-  nicknames: Array,
+  nicknames: [String],
   birthDate: Date,
   // favouritePlace: String,  // MongoDB Localizaciones
-  gender: String,
   description: String,
   rating: {
     numberOfRatings: Number,
     average: Number
   },
   avatar: String,
-  friends: Array,
-  groups: Array,
-  events: Array,
-  // sports: tags
+  friends: [
+    {
+      username: String,
+      status: String
+    }
+  ],
+  groups: [String],
+  events: [String],
+  sports: [String],
   updated: { type: Date, default: Date.now() },
   created: { type: Date, default: Date.now() }
 });
