@@ -4,6 +4,9 @@ dist
 # VSCode settings
 .vscode
 
+# # Scripts
+# scripts
+
 # # Prettier config
 # .prettierrc
 
