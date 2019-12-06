@@ -1,11 +1,10 @@
 language: node_js
 nodejs:
   - stable
-branches:
-  only:
-    - develop
 cache: npm
 script: 
   - npm run lint
   - npm test
   - npm run build
+deploy:
+  - echo 'Despliegue OK'
