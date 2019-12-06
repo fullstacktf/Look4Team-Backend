@@ -51,7 +51,7 @@ export default class UserController {
     body: IUserModel
   ): Promise<IUserModel> {
     await DBManager.connectDatabase();
-    const user = await User.findOneAndUpdate(userName, body);
+    const user = await User.findOneAndUpdate({ username: userName }, body);
     return user;
   }
 }
