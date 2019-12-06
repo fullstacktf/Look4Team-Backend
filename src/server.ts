@@ -1,7 +1,7 @@
 import express, { json } from 'express';
 import morgan from 'morgan';
-import EventRoutes from './events/routes/eventsRoutes';
-import GroupRoutes from './groups/routes/groupsRoutes';
+import EventRoutes from './events/routes/eventRoutes';
+import GroupRoutes from './groups/routes/groupRoutes';
 import UserRoutes from './users/routes/userRoutes';
 
 const server = express();
