@@ -5,6 +5,7 @@ const MONGO_URL: string = 'mongodb://127.0.0.1:27017/look4team';
 export default class DBManager {
   static db;
 
+  // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
   static async connectDatabase() {
     if (!this.db) {
       mongoose.set('useFindAndModify', false);
