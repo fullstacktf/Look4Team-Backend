@@ -64,10 +64,25 @@ describe('Validator', () => {
   describe('Comprueba si un objeto contiene una serie de propiedades', () => {
     const user = {
       username: 'user',
-      password: '1234'
+      pass: '1234'
     };
     test('Devuelve false si no contiene una propiedad', () => {
       expect(Validator.hasProperties(user, ['name'])).toBe(false);
+    });
+    test('Devuelve true si contiene una propiedad', () => {
+      expect(Validator.hasProperties(user, ['username'])).toBe(true);
+    });
+    test('Devuelve false si no contiene todas las propiedades especificadas', () => {
+      expect(Validator.hasProperties(user, ['username', 'data'])).toBe(false);
+    });
+    test('Devuelve true si contiene todas las propiedades especificadas', () => {
+      expect(Validator.hasProperties(user, ['username', 'pass'])).toBe(true);
+    });
+    test('Devuelve false si no se le indican propiedades ante un objeto que no está vacío', () => {
+      expect(Validator.hasProperties(user, [])).toBe(false);
+    });
+    test('Devuelve true si no se le indican propiedades ante un objeto vacío', () => {
+      expect(Validator.hasProperties({}, [])).toBe(true);
     });
   });
 });

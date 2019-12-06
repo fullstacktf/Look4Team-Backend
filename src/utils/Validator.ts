@@ -55,11 +55,14 @@ export default class Validator {
   }
 
   static hasProperties(input: Object, properties: string[]): boolean {
-    properties.forEach((property: string) => {
+    if (properties.length == 0 && Object.keys(input).length > 0) {
+      return false;
+    }
+    for (const property of properties) {
       if (!Object.prototype.hasOwnProperty.call(input, property)) {
         return false;
       }
-    });
+    }
     return true;
   }
 }
