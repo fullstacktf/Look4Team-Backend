@@ -1,6 +1,6 @@
 import { Router, Response, Request } from 'express';
-import EventController from '../controller/eventsController';
-import { IEventModel } from '../model/eventsModel';
+import EventController from '../controller/eventController';
+import { IEventModel } from '../model/eventModel';
 const router: Router = Router();
 
 //getAllEvents()
@@ -26,16 +26,15 @@ router.get('/:id', (req: Request, res: Response) => {
 });
 
 //addEvent()
-//duda con el controlador
-// router.post('/', (req: Request, res: Response) => {
-//     EventController.addEvent(req.body)
-//       .then((user: IEventModel) => {
-//         return res.status(200).json(event);
-//       })
-//       .catch((err: Error) => {
-//         throw new Error(`Error trying to add event : ${err}`);
-//       });
-//   });
+router.post('/', (req: Request, res: Response) => {
+  EventController.addEvent(req.body)
+    .then((event: IEventModel) => {
+      return res.status(200).json(event);
+    })
+    .catch((err: Error) => {
+      throw new Error(`Error trying to add event : ${err}`);
+    });
+});
 
 //updateEvent()
 router.put('/:id', (req: Request, res: Response) => {
@@ -59,6 +58,24 @@ router.delete('/:id', (req: Request, res: Response) => {
     });
 });
 
-//searchEventsBy()
+router.get('/user/:username', (req: Request, res: Response) => {
+  EventController.getUserEvents(req.params.username)
+    .then((events: IEventModel[]) => {
+      res.status(200).json(events);
+    })
+    .catch((err: Error) => {
+      throw new Error(`Error trying to get user events : ${err}`);
+    });
+});
+
+router.get('/last', (req: Request, res: Response) => {
+  EventController.getLastEvents()
+    .then((events: IEventModel[]) => {
+      res.status(200).json(events);
+    })
+    .catch((err: Error) => {
+      throw new Error(`Error trying to get last events : ${err}`);
+    });
+});
 
 export default router;
