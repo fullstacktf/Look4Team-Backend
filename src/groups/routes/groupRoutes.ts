@@ -1,6 +1,6 @@
 import { Router, Response, Request } from 'express';
-import GroupController from '../controller/groupsController';
-import { IGroupModel } from '../model/groupsModel';
+import GroupController from '../controller/groupController';
+import { IGroupModel } from '../model/groupModel';
 const router: Router = Router();
 
 router.get('/', (req: Request, res: Response) => {
@@ -50,6 +50,26 @@ router.delete('/:id', (req: Request, res: Response) => {
     })
     .catch((err: Error) => {
       throw new Error(`Error trying to delete group : ${err}`);
+    });
+});
+
+router.get('/user/:username', (req: Request, res: Response) => {
+  GroupController.getUserGroups(req.params.username)
+    .then((groups: IGroupModel[]) => {
+      res.status(200).json(groups);
+    })
+    .catch((err: Error) => {
+      throw new Error(`Error trying to get user groups : ${err}`);
+    });
+});
+
+router.get('/last', (req: Request, res: Response) => {
+  GroupController.getLastGroups()
+    .then((groups: IGroupModel[]) => {
+      res.status(200).json(groups);
+    })
+    .catch((err: Error) => {
+      throw new Error(`Error trying to get last groups : ${err}`);
     });
 });
 

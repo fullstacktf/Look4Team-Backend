@@ -4,7 +4,7 @@ export interface IGroupModel extends Document {
   name: string;
   description: string;
   avatar: string;
-  users: Array<string>;
+  users: string[];
   updated: Date;
   created: Date;
 }
@@ -13,7 +13,8 @@ const GroupSchema: Schema = new Schema({
   name: { type: String, required: true },
   description: String,
   avatar: String,
-  users: { type: Array, required: true },
+  creator: String,
+  users: [String],
   updated: { type: Date, default: Date.now() },
   created: { type: Date, default: Date.now() }
 });
