@@ -19,7 +19,7 @@ const EventSchema: Schema = new Schema({
   name: { type: String, required: true },
   description: String,
   place: String,
-  datetime: { type: Date, required: true },
+  datetime: { type: Date, required: true, default: Date.now() },
   image: String,
   sport: String,
   creator: String,
