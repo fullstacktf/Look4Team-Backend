@@ -13,6 +13,30 @@ router.get('/', (req: Request, res: Response) => {
     });
 });
 
+router.post('/login', (req: Request, res: Response) => {
+  UserController.signIn(req.body)
+    .then((token: string) => {
+      res.send(token);
+      res.status(200).send();
+    })
+    .catch((err: Error) => {
+      res.status(401).send();
+      throw new Error(`Log in Error : ${err}`);
+    });
+});
+
+// router.post('/signup', (req: Request, res: Response) => {
+//   UserController.signUp(req.body)
+//     .then((token: string) => {
+//       res.send(token);
+//       res.status(200).send();
+//     })
+//     .catch((err: Error) => {
+//       res.status(401).send();
+//       throw new Error(`Sign up Error : ${err}`);
+//     });
+// });
+
 router.get('/:username', (req: Request, res: Response) => {
   UserController.getUser(req.params.username)
     .then((user: IUserModel) => {

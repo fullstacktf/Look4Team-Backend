@@ -1,5 +1,8 @@
 import { User, IUserModel } from '../model/userModel';
 import DBManager from '../../../utils/DBManager';
+import config from '../../../config/config';
+import PasswordManager from '../../../utils/PasswordManager';
+import jwt from 'jsonwebtoken';
 
 export default class UserController {
   static async getAllUsers(): Promise<IUserModel[]> {
@@ -26,10 +29,12 @@ export default class UserController {
       description,
       avatar
     } = body;
+
+    const encryptedPassword = PasswordManager.encryptPassword(password);
     const user: IUserModel = new User({
       username,
       email,
-      password,
+      password: encryptedPassword,
       name,
       surname,
       birthDate,
@@ -53,5 +58,28 @@ export default class UserController {
     await DBManager.connectDatabase();
     const user = await User.findOneAndUpdate({ username: userName }, body);
     return user;
+  }
+
+  static async signIn(body: IUserModel): Promise<string> {
+    // Comprueba si existe username y password
+    const { username, password } = body;
+    if (!(username && password)) {
+      throw new Error('Empty username or password');
+    }
+
+    // Buscar el usuario en la base de datos
+    await DBManager.connectDatabase();
+    const user = await User.findOne({ username: username });
+
+    // Comprueba si las constraseñas coinciden
+    if (!PasswordManager.checkPassword(password, user.password)) {
+      throw new Error('Invalid password');
+    }
+
+    // SignIn jwt válido durante 8h
+    const token = jwt.sign({ username: user.username }, config.jwtSecret, {
+      expiresIn: '8h'
+    });
+    return token;
   }
 }
