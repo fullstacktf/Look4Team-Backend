@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
+import config from '../config/config';
 
-const MONGO_URL: string = 'mongodb://127.0.0.1:27017/look4team';
+const MONGO_URL: string = config.db;
 
 export default class DBManager {
   static db;
