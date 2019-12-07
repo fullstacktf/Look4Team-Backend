@@ -1,5 +1,5 @@
 import { User, IUserModel } from '../model/userModel';
-import DBManager from '../../utils/DBManager';
+import DBManager from '../../../utils/DBManager';
 
 export default class UserController {
   static async getAllUsers(): Promise<IUserModel[]> {

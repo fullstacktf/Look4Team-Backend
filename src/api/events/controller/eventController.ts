@@ -1,5 +1,5 @@
 import { Event, IEventModel } from '../model/eventModel';
-import DBManager from '../../utils/DBManager';
+import DBManager from '../../../utils/DBManager';
 import { ObjectId } from 'mongodb';
 
 export default class EventsController {

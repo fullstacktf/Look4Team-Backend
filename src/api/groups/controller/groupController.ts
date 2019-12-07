@@ -1,5 +1,5 @@
 import { Group, IGroupModel } from '../model/groupModel';
-import DBManager from '../../utils/DBManager';
+import DBManager from '../../../utils/DBManager';
 import { ObjectId } from 'mongodb';
 
 export default class GroupController {

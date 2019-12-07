@@ -1,11 +1,13 @@
 import express, { json } from 'express';
 import morgan from 'morgan';
-import EventRoutes from './events/routes/eventRoutes';
-import GroupRoutes from './groups/routes/groupRoutes';
-import UserRoutes from './users/routes/userRoutes';
+import compression from 'compression';
+import EventRoutes from './api/events/routes/eventRoutes';
+import GroupRoutes from './api/groups/routes/groupRoutes';
+import UserRoutes from './api/users/routes/userRoutes';
 
 const server = express();
 
+server.use(compression());
 server.use(morgan('dev'));
 server.use(json());
 
