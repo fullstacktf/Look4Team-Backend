@@ -1,0 +1,22 @@
+version: "3.7"
+services:
+  web:
+    container_name: web
+    depends_on:
+      - db
+    restart: always
+    image: jeramdev/backend:latest
+    ports:
+      - "3000:3000"
+  db:
+    container_name: db
+    image: mongo:3.4.23-xenial
+    restart: always
+    environment:
+      - MONGODB=mongodb://db:27017/look4team
+    ports:
+      - "27017:27017"
+    volumes:
+      - "dbdata:/var/lib/mongo/data"
+volumes:
+  dbdata:

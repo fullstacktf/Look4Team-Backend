@@ -1,13 +1,28 @@
 language: node_js
 nodejs:
   - stable
-branches:
-  only:
-    - master
-cache: npm
-script: 
-  - npm run lint
-  - npm test
-  - npm run build
-after_success:
-  - bash scripts/deploy.sh
+jobs:
+  include:
+    - stage: Linter Test
+      script: npm run lint
+    - stage: Unit Tests      
+      script: npm test
+    - stage: Build Test
+      script: npm run build
+    - stage: Deploy
+      before_install: bash scripts/install.sh
+      env:
+        - REMOTE_PATH=docker
+        - REMOTE_USER=deploy
+        - REMOTE_HOST=167.172.168.233
+      script: 
+        - npm run build
+      after_success: bash scripts/deploy.sh
+stages:
+  - name: Linter Test
+    if: branch = develop
+  - name: Unit Tests
+  - name: Build Test
+    if: branch = develop
+  - name: Deploy
+    if: branch = master AND type = push
