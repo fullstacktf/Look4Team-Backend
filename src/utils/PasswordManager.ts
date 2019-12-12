@@ -1,4 +1,4 @@
-import { genSaltSync, hashSync, compareSync } from 'bcrypt';
+import { genSaltSync, hashSync, compareSync } from 'bcryptjs';
 
 export default class PasswordManager {
   static encryptPassword(password: string): string {
