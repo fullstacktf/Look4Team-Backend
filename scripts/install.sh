@@ -1,6 +1,6 @@
 #!/bin/bash
 
-openssl aes-256-cbc -K $encrypted_47a6e7674e1d_key -iv $encrypted_47a6e7674e1d_iv -in travis.enc -out deploy-travis -d
+openssl aes-256-cbc -K $encrypted_d3a3c756a187_key -iv $encrypted_d3a3c756a187_iv -in travis.enc -out ~\/workspace/clavesTravis/travis -d
 
 eval $(ssh-agent -s)
 
