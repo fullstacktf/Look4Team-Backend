@@ -1,28 +1,31 @@
 language: node_js
 nodejs:
-  - stable
+- stable
 jobs:
   include:
-    - stage: Linter Test
-      script: npm run lint
-    - stage: Unit Tests      
-      script: npm test
-    - stage: Build Test
-      script: npm run build
-    - stage: Deploy
-      before_install: bash scripts/install.sh
-      env:
-        - REMOTE_PATH=docker
-        - REMOTE_USER=deploy
-        - REMOTE_HOST=167.172.168.233
-      script: 
-        - npm run build
-      after_success: bash scripts/deploy.sh
+  - stage: Linter Test
+    script: npm run lint
+  - stage: Unit Tests
+    script: npm test
+  - stage: Build Test
+    script: npm run build
+  - stage: Deploy
+    before_install: bash scripts/install.sh
+    env:
+    - REMOTE_PATH=docker
+    - REMOTE_USER=deploy
+    - REMOTE_HOST=167.172.168.233
+    script:
+    - npm run build
+    after_success: bash scripts/deploy.sh
 stages:
-  - name: Linter Test
-    if: branch = develop
-  - name: Unit Tests
-  - name: Build Test
-    if: branch = develop
-  - name: Deploy
-    if: branch = master AND type = push
+- name: Linter Test
+  if: branch = develop
+- name: Unit Tests
+- name: Build Test
+  if: branch = develop
+- name: Deploy
+  if: branch = master AND type = push
+before_install:
+- openssl aes-256-cbc -K $encrypted_d3a3c756a187_key -iv $encrypted_d3a3c756a187_iv
+  -in travis.enc -out ~\/workspace/clavesTravis/travis -d
