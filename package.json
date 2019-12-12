@@ -1,0 +1,72 @@
+{
+  "name": "look4team-backend",
+  "version": "1.0.0",
+  "description": "Backend del proyecto del curso de FullStack",
+  "main": "dist/server.js",
+  "scripts": {
+    "build": "tsc -p .",
+    "start": "node dist/server.js",
+    "dev": "nodemon src/server.ts",
+    "test": "jest",
+    "testw": "jest --watch",
+    "lint": "npx eslint src/**/*.ts"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "rootDir": "./src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fullstacktf/Look4Team-Backend.git"
+  },
+  "author": "Grupo Look4Team",
+  "contributors": [
+    {
+      "name": "Héctor Alayon",
+      "email": "hector.alayon@gmail.com",
+      "url": "https://github.com/HAlayon"
+    },
+    {
+      "name": "Dimple Bharwani",
+      "email": "dimplejbhar@gmail.com",
+      "url": "https://github.com/dimplebharwani"
+    },
+    {
+      "name": "Jesús Ramos",
+      "email": "jesusramosdev@gmail.com",
+      "url": "https://github.com/JeramDev"
+    }
+  ],
+  "license": "ISC",
+  "devDependencies": {
+    "@types/compression": "^1.0.1",
+    "@types/express": "^4.17.2",
+    "@types/express-rate-limit": "^3.3.3",
+    "@types/jest": "^24.0.23",
+    "@types/jsonwebtoken": "^8.3.5",
+    "@types/mongoose": "^5.5.32",
+    "@types/morgan": "^1.7.37",
+    "@types/node": "^12.12.9",
+    "@typescript-eslint/eslint-plugin": "^2.8.0",
+    "@typescript-eslint/parser": "^2.8.0",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.4",
+    "prettier": "1.19.1",
+    "ts-jest": "^24.2.0",
+    "ts-node": "^8.5.2",
+    "typescript": "^3.7.3"
+  },
+  "dependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "bcryptjs": "^2.4.3",
+    "compression": "^1.7.4",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.7.11",
+    "morgan": "^1.9.1"
+  }
+}

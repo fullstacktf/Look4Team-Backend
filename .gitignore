@@ -1,4 +1,18 @@
 node_modules
-.eslintrc.json
-.eslintignore
-tsconfig.json
+dist
+
+# VSCode settings
+.vscode
+
+# # Scripts
+# scripts
+
+# # Prettier config
+# .prettierrc
+
+# # ESLint config
+# .eslintignore
+# .eslintrc.json
+
+# # TS config
+# tsconfig.json
