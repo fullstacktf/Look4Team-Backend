@@ -15,9 +15,9 @@ server.use(json());
 
 server.use(verifyJWT);
 
-server.use('/events', EventRoutes);
-server.use('/groups', GroupRoutes);
-server.use('/users', UserRoutes);
+server.use('/api/events', EventRoutes);
+server.use('/api/groups', GroupRoutes);
+server.use('/api/users', UserRoutes);
 
 server.set('port', config.port);
 server.listen(server.get('port'), (error: Error) => {
