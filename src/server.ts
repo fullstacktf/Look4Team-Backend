@@ -5,12 +5,15 @@ import config from './config/config';
 import EventRoutes from './api/events/routes/eventRoutes';
 import GroupRoutes from './api/groups/routes/groupRoutes';
 import UserRoutes from './api/users/routes/userRoutes';
+import { verifyJWT } from './middlewares/verifyJWT';
 
 const server = express();
 
 server.use(compression());
 server.use(morgan('dev'));
 server.use(json());
+
+server.use(verifyJWT);
 
 server.use('/events', EventRoutes);
 server.use('/groups', GroupRoutes);
