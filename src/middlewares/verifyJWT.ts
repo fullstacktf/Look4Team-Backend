@@ -9,7 +9,7 @@ import { Request, Response } from 'express';
  * @param res
  * @param next
  */
-export const verifyJWT = (req: Request, res: Response): Response => {
+export const verifyJWT = (req: Request, res: Response): void => {
   if (!req.headers.authorization) res.status(200).send();
 };
 
