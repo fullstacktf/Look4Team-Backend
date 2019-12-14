@@ -10,7 +10,7 @@ import { Request, Response } from 'express';
  * @param next
  */
 export const verifyJWT = (req: Request, res: Response): void => {
-  if (!req.headers.authorization) res.status(200).send();
+  if (!req.headers.authorization) res.status(200).json({ msg: 'Unauthorized' });
 };
 
 // const token: string = req.headers.authorization.split(' ')[1];
