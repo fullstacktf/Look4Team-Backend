@@ -2,10 +2,10 @@
   "name": "look4team-backend",
   "version": "1.0.0",
   "description": "Backend del proyecto del curso de FullStack",
-  "main": "build/server.js",
+  "main": "dist/server.js",
   "scripts": {
     "build": "tsc -p .",
-    "start": "node build/server.js",
+    "start": "node dist/server.js",
     "dev": "nodemon src/server.ts",
     "test": "jest",
     "testw": "jest --watch",
