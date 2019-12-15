@@ -6,6 +6,7 @@ import EventRoutes from './api/events/routes/eventRoutes';
 import GroupRoutes from './api/groups/routes/groupRoutes';
 import UserRoutes from './api/users/routes/userRoutes';
 import AuthRoutes from './api/users/routes/authRoutes';
+import { errorsHandler } from './middlewares/errorsHandler';
 import { verifyJWT } from './middlewares/verifyJWT';
 import cors from 'cors';
 
@@ -24,6 +25,8 @@ server.use('/api', AuthRoutes);
 server.use('/api/events', verifyJWT, EventRoutes);
 server.use('/api/groups', verifyJWT, GroupRoutes);
 server.use('/api/users', verifyJWT, UserRoutes);
+
+server.use(errorsHandler);
 
 server.set('port', config.port);
 server.listen(server.get('port'), (error: Error) => {

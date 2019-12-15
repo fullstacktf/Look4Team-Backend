@@ -1,16 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import config from '../config/config';
+import HttpException from '../utils/HttpException';
 
-export const verifyJWT = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-): void => {
-  console.log(req.headers['authorization']);
+export const verifyJWT = (req: Request, res: Response, next: NextFunction): void => {
   const bearerHeader = req.headers['authorization'];
   if (!bearerHeader) {
-    res.status(401).send('Unauthorized');
+    next(new HttpException(401, 'Undefined token'));
     return;
   }
   const token = bearerHeader.split(' ')[1];
@@ -19,7 +15,7 @@ export const verifyJWT = (
   try {
     jwtPayload = jwt.verify(token, config.jwtSecret);
   } catch (err) {
-    res.status(401).send('Unauthorized');
+    next(new HttpException(401, 'Invalid token'));
     return;
   }
 
