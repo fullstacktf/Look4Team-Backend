@@ -13,7 +13,7 @@ services:
     image: mongo:3.4.23-xenial
     restart: always
     environment:
-      - MONGO_INITDB_DATABASE: look4team
+      - MONGO_INITDB_DATABASE=look4team
       - MONGODB=mongodb://db:27017/look4team
     ports:
       - "27017:27017"
