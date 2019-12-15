@@ -21,7 +21,7 @@ server.use(json());
 server.use(cors(corsOptions));
 
 server.use('/api', AuthRoutes);
-server.use('/api/events', verifyJWT, EventRoutes);
+server.use('/api/events', EventRoutes);
 server.use('/api/groups', verifyJWT, GroupRoutes);
 server.use('/api/users', verifyJWT, UserRoutes);
 
