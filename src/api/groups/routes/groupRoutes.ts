@@ -54,7 +54,7 @@ router.delete('/:id', (req: Request, res: Response, next: NextFunction) => {
     });
 });
 
-router.get('/user/:username', (req: Request, res: Response, next: NextFunction) => {
+router.get('/groups/:username', (req: Request, res: Response, next: NextFunction) => {
   GroupController.getUserGroups(req.params.username)
     .then((groups: IGroupModel[]) => {
       res.status(200).json(groups);
