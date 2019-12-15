@@ -1,55 +1,56 @@
-import { Router, Response, Request } from 'express';
+import { Router, Response, Request, NextFunction } from 'express';
 import UserController from '../controller/userController';
 import { IUserModel } from '../model/userModel';
+import HttpException from '../../../utils/HttpException';
 const router: Router = Router();
 
-router.get('/', (req: Request, res: Response) => {
+router.get('/', (req: Request, res: Response, next: NextFunction) => {
   UserController.getAllUsers()
     .then((users: IUserModel[]) => {
       res.status(200).json(users);
     })
-    .catch((err: Error) => {
-      throw new Error(`Error trying to get all users : ${err}`);
+    .catch((error: HttpException) => {
+      next(error);
     });
 });
 
-router.get('/:username', (req: Request, res: Response) => {
+router.get('/:username', (req: Request, res: Response, next: NextFunction) => {
   UserController.getUser(req.params.username)
     .then((user: IUserModel) => {
       res.status(200).json(user);
     })
-    .catch((err: Error) => {
-      throw new Error(`Error trying to get one user : ${err}`);
+    .catch((error: HttpException) => {
+      next(error);
     });
 });
 
-router.post('/', (req: Request, res: Response) => {
+router.post('/', (req: Request, res: Response, next: NextFunction) => {
   UserController.addUser(req.body)
     .then((user: IUserModel) => {
       return res.status(200).json(user);
     })
-    .catch((err: Error) => {
-      throw new Error(`Error trying to add user : ${err}`);
+    .catch((error: HttpException) => {
+      next(error);
     });
 });
 
-router.put('/:username', (req: Request, res: Response) => {
+router.put('/:username', (req: Request, res: Response, next: NextFunction) => {
   UserController.updateUser(req.params.username, req.body)
     .then((user: IUserModel) => {
       return res.status(200).json(user);
     })
-    .catch((err: Error) => {
-      throw new Error(`Error trying to update user : ${err}`);
+    .catch((error: HttpException) => {
+      next(error);
     });
 });
 
-router.delete('/:username', (req: Request, res: Response) => {
+router.delete('/:username', (req: Request, res: Response, next: NextFunction) => {
   UserController.deleteUser(req.params.username)
     .then((user: IUserModel) => {
       return res.status(200).json(user);
     })
-    .catch((err: Error) => {
-      throw new Error(`Error trying to delete user : ${err}`);
+    .catch((error: HttpException) => {
+      next(error);
     });
 });
 

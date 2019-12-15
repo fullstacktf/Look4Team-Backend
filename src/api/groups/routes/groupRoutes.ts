@@ -1,75 +1,76 @@
-import { Router, Response, Request } from 'express';
+import { Router, Response, Request, NextFunction } from 'express';
 import GroupController from '../controller/groupController';
 import { IGroupModel } from '../model/groupModel';
+import HttpException from '../../../utils/HttpException';
 const router: Router = Router();
 
-router.get('/', (req: Request, res: Response) => {
+router.get('/', (req: Request, res: Response, next: NextFunction) => {
   GroupController.getAllGroups()
     .then((groups: IGroupModel[]) => {
       res.status(200).json(groups);
     })
-    .catch((err: Error) => {
-      throw new Error(`Error trying to get all groups : ${err}`);
+    .catch((error: HttpException) => {
+      next(error);
     });
 });
 
-router.get('/:id', (req: Request, res: Response) => {
+router.get('/:id', (req: Request, res: Response, next: NextFunction) => {
   GroupController.getGroup(req.params.id)
     .then((group: IGroupModel) => {
       res.status(200).json(group);
     })
-    .catch((err: Error) => {
-      throw new Error(`Error trying to get one group : ${err}`);
+    .catch((error: HttpException) => {
+      next(error);
     });
 });
 
-router.post('/', (req: Request, res: Response) => {
+router.post('/', (req: Request, res: Response, next: NextFunction) => {
   GroupController.addGroup(req.body)
     .then((group: IGroupModel) => {
       return res.status(200).json(group);
     })
-    .catch((err: Error) => {
-      throw new Error(`Error trying to add group : ${err}`);
+    .catch((error: HttpException) => {
+      next(error);
     });
 });
 
-router.put('/:id', (req: Request, res: Response) => {
+router.put('/:id', (req: Request, res: Response, next: NextFunction) => {
   GroupController.updateGroup(req.params.id, req.body)
     .then((group: IGroupModel) => {
       return res.status(200).json(group);
     })
-    .catch((err: Error) => {
-      throw new Error(`Error trying to update group : ${err}`);
+    .catch((error: HttpException) => {
+      next(error);
     });
 });
 
-router.delete('/:id', (req: Request, res: Response) => {
+router.delete('/:id', (req: Request, res: Response, next: NextFunction) => {
   GroupController.deleteGroup(req.params.id)
     .then((group: IGroupModel) => {
       return res.status(200).json(group);
     })
-    .catch((err: Error) => {
-      throw new Error(`Error trying to delete group : ${err}`);
+    .catch((error: HttpException) => {
+      next(error);
     });
 });
 
-router.get('/user/:username', (req: Request, res: Response) => {
+router.get('/groups/:username', (req: Request, res: Response, next: NextFunction) => {
   GroupController.getUserGroups(req.params.username)
     .then((groups: IGroupModel[]) => {
       res.status(200).json(groups);
     })
-    .catch((err: Error) => {
-      throw new Error(`Error trying to get user groups : ${err}`);
+    .catch((error: HttpException) => {
+      next(error);
     });
 });
 
-router.get('/last', (req: Request, res: Response) => {
+router.get('/last', (req: Request, res: Response, next: NextFunction) => {
   GroupController.getLastGroups()
     .then((groups: IGroupModel[]) => {
       res.status(200).json(groups);
     })
-    .catch((err: Error) => {
-      throw new Error(`Error trying to get last groups : ${err}`);
+    .catch((error: HttpException) => {
+      next(error);
     });
 });
 
