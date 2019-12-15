@@ -5,6 +5,7 @@ import config from './config/config';
 import EventRoutes from './api/events/routes/eventRoutes';
 import GroupRoutes from './api/groups/routes/groupRoutes';
 import UserRoutes from './api/users/routes/userRoutes';
+import AuthRoutes from './api/users/routes/authRoutes';
 import { verifyJWT } from './middlewares/verifyJWT';
 
 const server = express();
@@ -13,11 +14,10 @@ server.use(compression());
 server.use(morgan('dev'));
 server.use(json());
 
-server.use(verifyJWT);
-
-server.use('/api/events', EventRoutes);
-server.use('/api/groups', GroupRoutes);
-server.use('/api/users', UserRoutes);
+server.use('/api', AuthRoutes);
+server.use('/api/events', verifyJWT, EventRoutes);
+server.use('/api/groups', verifyJWT, GroupRoutes);
+server.use('/api/users', verifyJWT, UserRoutes);
 
 server.set('port', config.port);
 server.listen(server.get('port'), (error: Error) => {
