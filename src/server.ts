@@ -7,12 +7,18 @@ import GroupRoutes from './api/groups/routes/groupRoutes';
 import UserRoutes from './api/users/routes/userRoutes';
 import AuthRoutes from './api/users/routes/authRoutes';
 import { verifyJWT } from './middlewares/verifyJWT';
+import cors from 'cors';
 
 const server = express();
+
+const corsOptions = {
+  origin: ['https://look4.team', 'http://localhost:3000']
+};
 
 server.use(compression());
 server.use(morgan('dev'));
 server.use(json());
+server.use(cors(corsOptions));
 
 server.use('/api', AuthRoutes);
 server.use('/api/events', verifyJWT, EventRoutes);
